@@ -94,12 +94,12 @@ public class PrivacyLogger {
         toast(type, title, null);
     }
     
-    public static void toastWithCooldown(AlertType type, String title, String message, String cooldownKey, long cooldownMs) {
+    private static void toastWithCooldown(AlertType type, String title, String message, String cooldownKey, long cooldownMs) {
         if (isToastOnCooldown(cooldownKey, cooldownMs)) return;
         toast(type, title, message);
     }
-    
-    public static void showToast(AlertType type, String title, String message) {
+
+    private static void showToast(AlertType type, String title, String message) {
         try {
             Minecraft client = Minecraft.getInstance();
             if (client == null) return;
@@ -238,11 +238,11 @@ public class PrivacyLogger {
     
     public static void showPortScanSummary() {
         if (portScanSummaryShown.get() || pendingPortScans.isEmpty()) return;
-        
+
         portScanSummaryShown.set(true);
         int uniquePorts = pendingPortScans.size();
         int total = totalPortScansBlocked.get();
-        
+
         if (uniquePorts == 1) {
             String port = pendingPortScans.iterator().next();
             alert(AlertType.DANGER, "Detected " + total + " local port scan(s) to " + port);
@@ -253,28 +253,23 @@ public class PrivacyLogger {
                 if (shown > 0) portsStr.append(", ");
                 portsStr.append(port);
                 if (++shown >= OpsecConstants.Display.MAX_PORTS_TO_SHOW) {
-                    if (uniquePorts > OpsecConstants.Display.MAX_PORTS_TO_SHOW) 
+                    if (uniquePorts > OpsecConstants.Display.MAX_PORTS_TO_SHOW)
                         portsStr.append(" +").append(uniquePorts - OpsecConstants.Display.MAX_PORTS_TO_SHOW).append(" more");
                     break;
                 }
             }
             alert(AlertType.DANGER, "Detected " + total + " local port scan(s): " + portsStr);
         }
-        
+
         Opsec.LOGGER.info("[OpSec] Port scan summary: detected {} requests to {} unique targets", total, uniquePorts);
     }
-    
+
     public static void resetPortScanTracking() {
         pendingPortScans.clear();
         totalPortScansBlocked.set(0);
         portScanSummaryShown.set(false);
     }
-    
-    public static void resetAllState() {
-        clearCooldowns();
-        resetPortScanTracking();
-    }
-    
+
     private static String extractHostPort(String url) {
         try {
             URI uri = new URI(url);
@@ -292,19 +287,7 @@ public class PrivacyLogger {
         }
     }
     
-    public static void alertClientBrandSpoofed(String originalBrand, String spoofedBrand) {
-        logDetection("Spoof", "Brand spoofed from '" + originalBrand + "' to '" + spoofedBrand + "'");
-    }
-    
-    public static void alertChannelBlocked(String channel) {
-        logDetection("ChannelFilter", "Blocked channel registration: " + channel);
-    }
-    
-    public static void alertChannelSpoofed(String channel, String forBrand) {
-        logDetection("ChannelSpoof", "Injecting fake channel '" + channel + "' for brand '" + forBrand + "'");
-    }
-    
-    public static void alertSecureChatRequired(String server) {
+    public static void alertSecureChatRequired() {
         toast(AlertType.WARNING, "Secure Chat Required");
         alert(AlertType.WARNING, "Server requires secure chat. Chat signing enabled.");
         logDetection("SecureChat", "Server enforces secure chat - ON_DEMAND signing activated");

@@ -378,19 +378,13 @@ public class SessionAccount implements Account {
     }
     
     // Getters
-    public String getAccessToken() { return accessToken; }
-    public String getRefreshToken() { return refreshToken; }
     @Override public String getUsername() { return username; }
     @Override public String getUuid() { return uuid; }
     public long getLastValidated() { return lastValidated; }
     @Override public boolean isValid() { return valid; }
     @Override public String getLastError() { return lastError; }
     public boolean hasRefreshToken() { return refreshToken != null && !refreshToken.isBlank(); }
-    
-    public void setValid(boolean valid) { this.valid = valid; }
-    public void setRefreshToken(String refreshToken) { this.refreshToken = refreshToken; }
-    public void clearError() { this.lastError = null; }
-    
+
     @Override
     public boolean hasValidInfo() {
         return username != null && !username.isBlank() && uuid != null && !uuid.isBlank();

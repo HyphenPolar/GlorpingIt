@@ -39,10 +39,6 @@ public final class LangOnlyPackResources implements PackResources {
         this.packId = packId;
     }
 
-    PackResources delegate() {
-        return delegate;
-    }
-
     // Filter bypassed after [Load Pack For Real] so a subsequent reload pulls the
     // full pack through this same wrapper instance.
     private boolean filterActive() {

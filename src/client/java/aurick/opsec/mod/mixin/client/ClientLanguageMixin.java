@@ -60,13 +60,11 @@ public class ClientLanguageMixin {
     }
     
     /**
-     * Mark initialization complete after loading.
+     * Log one-time tracking summary after language load completes.
      */
     @Inject(method = "loadFrom", at = @At("RETURN"))
     private static void opsec$onLoadComplete(ResourceManager resourceManager, List<String> filenames,
             boolean defaultRightToLeft, CallbackInfoReturnable<ClientLanguage> cir) {
-        ModRegistry.markInitialized();
-
         if (!opsec$loggedOnce) {
             opsec$loggedOnce = true;
             Opsec.LOGGER.debug("[OpSec] Translation key tracking: {} vanilla, {} server pack, {} total",

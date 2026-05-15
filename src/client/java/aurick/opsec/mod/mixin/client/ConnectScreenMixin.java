@@ -4,8 +4,6 @@ import aurick.opsec.mod.Opsec;
 import aurick.opsec.mod.config.OpsecConfig;
 import aurick.opsec.mod.config.SpoofSettings;
 import aurick.opsec.mod.detection.TrackPackDetector;
-import aurick.opsec.mod.protection.ClientSpoofer;
-import aurick.opsec.mod.protection.ResourcePackGuard;
 import aurick.opsec.mod.protection.TranslationProtectionHandler;
 import aurick.opsec.mod.tracking.ModRegistry;
 import com.mojang.authlib.minecraft.UserApiService;
@@ -30,9 +28,7 @@ public class ConnectScreenMixin {
     @Inject(method = "startConnecting", at = @At("HEAD"))
     private static void opsec$resetState(CallbackInfo ci) {
         TrackPackDetector.reset();
-        ResourcePackGuard.onServerJoin();
         TranslationProtectionHandler.clearCache();
-        ClientSpoofer.reset();  // Reset brand spoof logging for new connection
 
         // Ensure profile keys are available for ON_DEMAND mode
         // This runs BEFORE the login phase, so keys will be ready if server requires secure chat

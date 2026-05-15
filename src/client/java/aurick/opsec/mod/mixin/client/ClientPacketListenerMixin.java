@@ -137,7 +137,7 @@ public abstract class ClientPacketListenerMixin {
 
                 if (!settings.isSigningToastShown()) {
                     settings.setSigningToastShown(true);
-                    PrivacyLogger.alertSecureChatRequired(serverAddress);
+                    PrivacyLogger.alertSecureChatRequired();
                 }
             }
         }
@@ -215,7 +215,7 @@ public abstract class ClientPacketListenerMixin {
 
         if (!settings.isSigningToastShown()) {
             settings.setSigningToastShown(true);
-            PrivacyLogger.alertSecureChatRequired(OpsecConfig.getInstance().getCurrentServer());
+            PrivacyLogger.alertSecureChatRequired();
         }
     }
 

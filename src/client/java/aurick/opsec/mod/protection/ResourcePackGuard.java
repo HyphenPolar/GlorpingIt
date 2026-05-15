@@ -2,7 +2,6 @@ package aurick.opsec.mod.protection;
 
 import aurick.opsec.mod.Opsec;
 import aurick.opsec.mod.PrivacyLogger;
-import aurick.opsec.mod.detection.TrackPackDetector;
 import aurick.opsec.mod.mixin.client.DownloadedPackSourceAccessor;
 import aurick.opsec.mod.mixin.client.MinecraftAccessor;
 import net.minecraft.client.Minecraft;
@@ -15,53 +14,8 @@ import java.util.Comparator;
 
 /**
  * Manages resource pack cache and provides utilities for cache clearing.
- * Delegates suspicious URL detection to TrackPackDetector.
  */
 public class ResourcePackGuard {
-    
-    public static boolean isSuspiciousUrl(String url) {
-        return TrackPackDetector.isSuspiciousUrl(url);
-    }
-    
-    public static void clearCache() {
-        try {
-            Path gameDir = Minecraft.getInstance().gameDirectory.toPath().toAbsolutePath().normalize();
-            Path downloadsPath = gameDir.resolve("downloads").normalize();
-            
-            if (!downloadsPath.startsWith(gameDir)) {
-                Opsec.LOGGER.error("[OpSec] Security: downloads path outside game directory");
-                return;
-            }
-            
-            if (!Files.exists(downloadsPath)) {
-                Opsec.LOGGER.debug("[OpSec] No resource pack cache to clear");
-                return;
-            }
-            
-            int deleted = 0;
-            int failed = 0;
-            var files = Files.walk(downloadsPath)
-                .filter(Files::isRegularFile)
-                .toList();
-            
-            for (Path file : files) {
-                try {
-                    Files.delete(file);
-                    deleted++;
-                } catch (IOException e) {
-                    failed++;
-                    Opsec.LOGGER.warn("[OpSec] Failed to delete cache file {}: {}", file.getFileName(), e.getMessage());
-                }
-            }
-            
-            if (deleted > 0) {
-                Opsec.LOGGER.info("[OpSec] Cleared {} files from resource pack cache{}", deleted, 
-                    failed > 0 ? " (" + failed + " failed)" : "");
-            }
-        } catch (IOException e) {
-            Opsec.LOGGER.error("[OpSec] Failed to clear resource pack cache: {}", e.getMessage(), e);
-        }
-    }
 
     /**
      * Clear all resource pack caches for all accounts.
@@ -150,9 +104,5 @@ public class ResourcePackGuard {
         }
         
         return deleted;
-    }
-    
-    public static void onServerJoin() {
-        TrackPackDetector.reset();
     }
 }
