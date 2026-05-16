@@ -14,22 +14,11 @@ buildscript {
 def minecraft_version = property("minecraft_version")
 def minecraft_version_range = findProperty("minecraft_version_range") ?: ">=1.21.1"
 def version_suffix = findProperty("version_suffix") ?: minecraft_version
-def isUnobfuscated = (findProperty("minecraft_version")?.toString() ?: "").startsWith("26")
 
-// Apply the correct Loom plugin variant per version target:
-// - net.fabricmc.fabric-loom (non-remap) for unobfuscated MC 26.1+
-// - fabric-loom (legacy/remap) for obfuscated MC <=1.21.11
-if (isUnobfuscated) {
-    apply plugin: "net.fabricmc.fabric-loom"
-} else {
-    apply plugin: "fabric-loom"
-}
+
+apply plugin: "fabric-loom"
 apply plugin: "maven-publish"
-if (isUnobfuscated) {
-    apply plugin: "dev.lukebemish.opensesame"
-} else {
-    apply plugin: "dev.lukebemish.opensesame.loom"
-}
+apply plugin: "dev.lukebemish.opensesame.loom"
 
 group = property("maven_group")
 version = property("mod_version")
