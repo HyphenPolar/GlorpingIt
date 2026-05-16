@@ -1,4 +1,8 @@
 <p align="center">
+GlorpGlorpGlorpGlorpGlorpGlorpGlorpGlorp
+</p>
+
+<p align="center">
 <img src="https://github.com/user-attachments/assets/085ae33d-eee9-4624-b7e2-d65ef565342d" alt="duper trooper mogging my whole family" width="15%"/>
 </p>
 
