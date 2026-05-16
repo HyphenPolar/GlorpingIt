@@ -126,7 +126,7 @@ tasks.processResources {
     }
 }
 
-def javaVersion = isUnobfuscated ? 25 : 21
+def javaVersion = 21
 
 tasks.withType(JavaCompile).configureEach {
     options.release = javaVersion
