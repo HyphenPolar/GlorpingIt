@@ -100,7 +100,6 @@ public class SpoofSettings {
 
     // Update notification
     private String skippedUpdateVersion = "";
-    private boolean tamperWarningDismissed = false;
 
     // One-time hints (persisted, never shown again)
     private boolean alertHintShown = false;
@@ -204,8 +203,6 @@ public class SpoofSettings {
     public void setSkippedUpdateVersion(String version) { this.skippedUpdateVersion = version != null ? version : ""; }
     public boolean isVersionSkipped(String version) { return version != null && version.equals(skippedUpdateVersion); }
 
-    public boolean isTamperWarningDismissed() { return tamperWarningDismissed; }
-    public void setTamperWarningDismissed(boolean dismissed) { this.tamperWarningDismissed = dismissed; }
 
     public String getEffectiveBrand() {
         return spoofAsVanilla ? VANILLA : FABRIC;
@@ -237,7 +234,6 @@ public class SpoofSettings {
         json.addProperty("buttonX", buttonX);
         json.addProperty("buttonY", buttonY);
         json.addProperty("skippedUpdateVersion", skippedUpdateVersion);
-        json.addProperty("tamperWarningDismissed", tamperWarningDismissed);
         json.addProperty("alertHintShown", alertHintShown);
 
         // Whitelist settings
@@ -315,7 +311,6 @@ public class SpoofSettings {
         if (json.has("buttonX")) s.buttonX = json.get("buttonX").getAsInt();
         if (json.has("buttonY")) s.buttonY = json.get("buttonY").getAsInt();
         if (json.has("skippedUpdateVersion")) s.skippedUpdateVersion = json.get("skippedUpdateVersion").getAsString();
-        if (json.has("tamperWarningDismissed")) s.tamperWarningDismissed = json.get("tamperWarningDismissed").getAsBoolean();
         if (json.has("alertHintShown")) s.alertHintShown = json.get("alertHintShown").getAsBoolean();
 
         // Whitelist settings (new tri-state, with backward compat for old boolean)
@@ -358,7 +353,6 @@ public class SpoofSettings {
         this.buttonX = other.buttonX;
         this.buttonY = other.buttonY;
         this.skippedUpdateVersion = other.skippedUpdateVersion;
-        this.tamperWarningDismissed = other.tamperWarningDismissed;
         this.alertHintShown = other.alertHintShown;
         this.whitelistMode = other.whitelistMode;
         this.whitelistedMods = new HashSet<>(other.whitelistedMods);
