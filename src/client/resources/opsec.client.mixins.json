@@ -33,8 +33,7 @@
 		"ComponentSerializationMixin",
 		"PacketDecoderMixin",
 		"PacketProcessorMixin",
-		"PacketUtilsMixin",
-		"TitleScreenMixin"
+		"PacketUtilsMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
