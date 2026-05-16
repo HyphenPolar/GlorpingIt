@@ -3,8 +3,6 @@ package aurick.opsec.mod;
 import aurick.opsec.mod.accounts.AccountManager;
 import aurick.opsec.mod.command.OpsecCommand;
 import aurick.opsec.mod.config.OpsecConfig;
-import aurick.opsec.mod.config.JarIntegrityChecker;
-import aurick.opsec.mod.config.UpdateChecker;
 import aurick.opsec.mod.protection.PackStripOverlay;
 import aurick.opsec.mod.tracking.ModRegistry;
 import net.fabricmc.api.ClientModInitializer;
