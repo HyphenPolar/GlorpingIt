@@ -18,27 +18,38 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Force clean bootstrap
+      - name: Set up Gradle 9.4.0
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 9.4.0
+
+      - name: Gradle version
+        shell: pwsh
         run: |
-          if (Test-Path "gradle\wrapper\gradle-wrapper.jar") {
-            Remove-Item "gradle\wrapper\gradle-wrapper.jar" -Force
+          if (-not (Test-Path "gradle\wrapper\gradle-wrapper.jar")) {
+            Write-Host "Wrapper missing — generating..."
+
+            gradle wrapper --gradle-version 9.4.0
+
+            if (-not (Test-Path "gradle\wrapper\gradle-wrapper.jar")) {
+              Write-Error "Failed to generate Gradle wrapper"
+              exit 1
+            }
+          } else {
+            Write-Host "Wrapper already exists"
           }
 
-      - name: Restore wrapper
-        run: |
-          .\gradlew.bat --version
+      - name: Gradlew version
+        run: .\gradlew.bat --version
 
-      - name: Build Stonecutter versions
-        run: |
-          .\gradlew.bat buildAll
+      - name: Build all versions
+        run: .\gradlew.bat buildAll
 
-      - name: Remap versions
-        run: |
-          .\gradlew.bat remapAll
+      - name: Remap all versions
+        run: .\gradlew.bat remapAll
 
-      - name: Upload all mod JARs
+      - name: Upload JARs
         uses: actions/upload-artifact@v4
         with:
           name: fabric-mod-builds
-          path: |
-            **/build/libs/*.jar
+          path: "**/build/libs/*.jar"
