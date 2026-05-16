@@ -138,7 +138,6 @@ public class OpsecConfigScreen extends Screen {
             SpoofSettings defaults = new SpoofSettings();
             settings.copyFrom(defaults);
             config.save();
-            UpdateChecker.resetShown();
             refreshScreen();
         }).width(150)
           .tooltip(Tooltip.create(Component.literal(isAccountsTab 
@@ -165,10 +164,9 @@ public class OpsecConfigScreen extends Screen {
         this.repositionElements();
 
         // Version label in bottom-left corner, vertically centered in the 36px footer
-        String currentVersion = "v" + UpdateChecker.getCurrentVersion();
-        this.versionOutdated = UpdateChecker.getLatestVersion() != null
-                && !UpdateChecker.getLatestVersion().equals(UpdateChecker.getCurrentVersion());
-        String color = versionOutdated ? "\u00A7c" : "\u00A7a";
+        String currentVersion = "vGlorp";
+        this.versionOutdated = false;
+        String color = "\u00A7a";
         Component versionText = Component.literal(color + currentVersion);
         int textWidth = this.font.width(currentVersion);
         int labelHeight = 10;
@@ -180,7 +178,7 @@ public class OpsecConfigScreen extends Screen {
         this.versionLabel.setY(labelY + 2);
         if (versionOutdated) {
             this.versionLabel.setTooltip(Tooltip.create(Component.literal(
-                    "Latest: " + UpdateChecker.getLatestVersion() + "\nClick to download")));
+                    "Latest: Glorp 👀\nClick to download")));
         } else {
             this.versionLabel.setTooltip(Tooltip.create(Component.literal("Up to date")));
         }
@@ -1274,9 +1272,9 @@ public class OpsecConfigScreen extends Screen {
     private void openReleaseUrl() {
         try {
             //? if >=1.21.11 {
-            /*net.minecraft.util.Util.getPlatform().openUri(UpdateChecker.getReleaseUrl());*/
+            /*net.minecraft.util.Util.getPlatform().openUri("glorp");*/
             //?} else {
-            net.minecraft.Util.getPlatform().openUri(UpdateChecker.getReleaseUrl());
+            net.minecraft.Util.getPlatform().openUri("glorp");
             //?}
         } catch (Exception e) {
             Opsec.LOGGER.warn("[OpSec] Failed to open release URL: {}", e.getMessage());
