@@ -44,11 +44,9 @@ loom {
             sourceSet(sourceSets.client)
         }
     }
-    if (!isUnobfuscated) {
-        mixin {
-            useLegacyMixinAp = true
-            defaultRefmapName = "opsec.refmap.json"
-        }
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = "opsec.refmap.json"
     }
 }
 
@@ -73,35 +71,22 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${minecraft_version}")
-    if (!isUnobfuscated) {
-        mappings(loom.officialMojangMappings())
-    }
+    
+    mappings(loom.officialMojangMappings())
 
     def loaderCoord = "net.fabricmc:fabric-loader:${loader_version}"
     def apiCoord = "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     def modmenuCoord = "com.terraformersmc:modmenu:${modmenu_version}"
 
-    if (isUnobfuscated) {
-        implementation(loaderCoord)
-        implementation(apiCoord)
-        implementation("com.terraformersmc:modmenu:${modmenu_version}") {
-            exclude group: "eu.pb4", module: "placeholder-api"
-        }
-    } else {
-        modImplementation(loaderCoord)
-        modImplementation(apiCoord)
-        modImplementation(modmenuCoord)
-    }
+    
+    modImplementation(loaderCoord)
+    modImplementation(apiCoord)
+    modImplementation(modmenuCoord)
 
     // MixinSquared for cancelling other mods' mixins (Meteor Client fix)
     include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.2-beta.4")))
 
-    // OpenSeSame for safe JVM-internal access (Host header injection in HttpUtilMixin)
-    if (isUnobfuscated) {
-        include(implementation("dev.lukebemish.opensesame:opensesame-core:0.8.1"))
-    } else {
-        include(implementation("dev.lukebemish.opensesame:opensesame-fabric:0.8.1"))
-    }
+    include(implementation("dev.lukebemish.opensesame:opensesame-fabric:0.8.1"))
 }
 
 tasks.processResources {
