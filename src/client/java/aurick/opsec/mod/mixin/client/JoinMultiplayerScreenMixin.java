@@ -1,8 +1,6 @@
 package aurick.opsec.mod.mixin.client;
 
 import aurick.opsec.mod.config.OpsecConfigScreen;
-import aurick.opsec.mod.config.UpdateChecker;
-import aurick.opsec.mod.config.UpdateScreen;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
@@ -47,12 +45,6 @@ public abstract class JoinMultiplayerScreenMixin extends Screen {
         
         opsec$updateButtonPosition();
         this.addRenderableWidget(this.opsec$settingsButton);
-
-        // Show update screen if an update is available
-        if (this.minecraft != null && UpdateChecker.isUpdateAvailable()) {
-            UpdateChecker.markShown();
-            this.minecraft.setScreen(new UpdateScreen(this));
-        }
     }
     
     //? if >=1.21.9 {
