@@ -78,25 +78,6 @@ public final class OpsecStrings {
     public static final String ACCOUNT_ADD_OFFLINE = "opsec.account.addOffline";
     public static final String ACCOUNT_ADD_OFFLINE_TOOLTIP = "opsec.account.addOffline.tooltip";
 
-    public static final String UPDATE_TITLE = "opsec.update.title";
-    public static final String UPDATE_MESSAGE = "opsec.update.message";
-    public static final String UPDATE_CURRENT = "opsec.update.current";
-    public static final String UPDATE_LATEST = "opsec.update.latest";
-    public static final String UPDATE_DOWNLOAD = "opsec.update.download";
-    public static final String UPDATE_SKIP = "opsec.update.skip";
-    public static final String UPDATE_CANCEL = "opsec.update.cancel";
-
-    public static final String TAMPER_TITLE = "opsec.tamper.title";
-    public static final String TAMPER_WARNING = "opsec.tamper.warning";
-    public static final String TAMPER_MISMATCH = "opsec.tamper.mismatch";
-    public static final String TAMPER_MALICIOUS = "opsec.tamper.malicious";
-    public static final String TAMPER_COMPROMISED = "opsec.tamper.compromised";
-    public static final String TAMPER_ACTION = "opsec.tamper.action";
-    public static final String TAMPER_EXPECTED = "opsec.tamper.expected";
-    public static final String TAMPER_ACTUAL = "opsec.tamper.actual";
-    public static final String TAMPER_DOWNLOAD = "opsec.tamper.download";
-    public static final String TAMPER_DISMISS_PERMANENT = "opsec.tamper.dismiss_permanent";
-    public static final String TAMPER_DISMISS = "opsec.tamper.dismiss";
 
     // Chat alerts + toast titles (user-visible runtime messages)
     public static final String ALERT_TRACKPACK_DETECTED = "opsec.alert.trackpack.detected";
