@@ -164,7 +164,7 @@ public class OpsecConfigScreen extends Screen {
         this.repositionElements();
 
         // Version label in bottom-left corner, vertically centered in the 36px footer
-        String currentVersion = "vGlorp";
+        String currentVersion = "v" + Opsec.getVersion();
         this.versionOutdated = false;
         String color = "\u00A7a";
         Component versionText = Component.literal(color + currentVersion);
