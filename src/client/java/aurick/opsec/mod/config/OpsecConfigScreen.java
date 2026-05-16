@@ -139,7 +139,6 @@ public class OpsecConfigScreen extends Screen {
             settings.copyFrom(defaults);
             config.save();
             UpdateChecker.resetShown();
-            JarIntegrityChecker.resetShown();
             refreshScreen();
         }).width(150)
           .tooltip(Tooltip.create(Component.literal(isAccountsTab 
