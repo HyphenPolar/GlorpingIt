@@ -45,11 +45,6 @@ public class OpsecClient implements ClientModInitializer {
 		OpsecCommand.register();
 		AccountManager.getInstance(); // Load saved accounts
 
-		// Check for mod updates (non-blocking)
-		UpdateChecker.checkForUpdate();
-
-		// Check jar integrity against GitHub release (non-blocking)
-		JarIntegrityChecker.checkIntegrity();
 
 		// Scan for registered channels after all mods have initialized
 		ClientLifecycleEvents.CLIENT_STARTED.register(client -> {
