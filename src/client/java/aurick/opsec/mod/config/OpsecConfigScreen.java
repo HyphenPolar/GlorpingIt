@@ -91,6 +91,7 @@ public class OpsecConfigScreen extends Screen {
     
     private Button doneButton;
     private Button resetButton;
+    private StringWidget versionLabel;
     private int currentTab = 0;
     private double scrollOffset = 0;
     private List<Tab> tabs;
@@ -169,6 +170,12 @@ public class OpsecConfigScreen extends Screen {
         int labelHeight = 10;
         int footerY = this.height - 36;
         int labelY = footerY + (36 - labelHeight) / 2;
+
+        this.versionLabel = new StringWidget(textWidth, labelHeight, versionText, this.font);
+        this.versionLabel.setX(6);
+        this.versionLabel.setY(labelY + 2);
+        this.versionLabel.setTooltip(Tooltip.create(Component.literal("Offline build with no update/integrity checks")));
+        this.addRenderableWidget(this.versionLabel);
     }
     
     private Tab createProtectionTab(SpoofSettings settings) {
