@@ -1,19 +1,16 @@
 <p align="center">
-GlorpGlorpGlorpGlorpGlorpGlorpGlorpGlorp
-</p>
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/085ae33d-eee9-4624-b7e2-d65ef565342d" alt="duper trooper mogging my whole family" width="15%"/>
+<img src="https://github.com/user-attachments/assets/9adba640-2570-4c22-9355-4f13aa5d4507" alt="opsectransparent" width="15%"/>
 </p>
 
 <p align="center">A client-side Minecraft mod that provides protection against client fingerprinting, tracking exploits, and other privacy focused features.</p>
 
 
 > [!WARNING]
-> This is a passion project mostly built with AI. Everything is tested but don't rely on this for actual security. If you want something proven, use [ExploitPreventer](https://github.com/NikOverflow/ExploitPreventer) **(See [EP Compatibility](#exploitpreventer-compatibility) and [Meteor Client notes](#pre-patched-meteor-client))**. OpSec just offers more features and interactive customization on top of the basics.
+> This is a fork with integrity/updates removed and will not be frequently updated, do not report issues from this build in the official repository/discord.
 
 > [!IMPORTANT]
-> OpSec and ExploitPrevent are **seperate and independent** projects. Please do not contact the ExploitPreventer developer regarding OpSec issues and vice versa. Feel free to open an issue here or express your concern in our [official support Discord server](https://discord.com/invite/PJ853Mpa8W).
+>* [Official Discord server](https://discord.com/invite/PJ853Mpa8W)
+>* [Official Github repository](https://github.com/aurickk/OpSec)
 
 ## What it does
 
@@ -346,43 +343,18 @@ OpSec blocks telemetry sending to Mojang when telemetry blocking is enabled. Doe
 
 ### Prerequisites
 
-- **Java 25**
-- **Gradle** (included via wrapper)
+- **Github Account**
+- **Fork of this repository**
 
 ### Building the Minecraft Mod
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/aurickk/OpSec.git
-   cd OpSec
-   ```
+1. **Go to actions**
 
-2. **Build all versions**
-   ```bash
-   # Windows
-   .\gradlew.bat build
-   
-   # Linux/Mac
-   ./gradlew build
-   ```
+2. **Select Build Mod**
 
-3. **Build a specific version**
-   ```bash
-   # Build for a specific version
-   ./gradlew :1.21.4:build
-   ./gradlew :1.21.11:build
-   ./gradlew :26.1:build
-   ```
+3. **Run Workflow**
 
-Output JARs are located in `versions/<minecraft_version>/build/libs/`:
-| Build Version | Supports |
-|---------------|----------|
-| 1.21.1 | 1.21 – 1.21.1 |
-| 1.21.4 | 1.21.2 – 1.21.5 |
-| 1.21.6 | 1.21.6 – 1.21.8 |
-| 1.21.9 | 1.21.9 – 1.21.10 |
-| 1.21.11 | 1.21.11 |
-| 26.1 | 26.1 – 26.1.2 |
+Output JARs are located in the fabric-mod-builds.zip
 
 
 ## References
