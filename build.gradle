@@ -6,8 +6,6 @@ buildscript {
     }
     dependencies {
         classpath "net.fabricmc:fabric-loom:${property('loom_version')}"
-        classpath "dev.lukebemish.opensesame.loom:dev.lukebemish.opensesame.loom.gradle.plugin:0.8.1"
-        classpath "dev.lukebemish.opensesame:dev.lukebemish.opensesame.gradle.plugin:0.8.1"
     }
 }
 
@@ -18,7 +16,6 @@ def version_suffix = findProperty("version_suffix") ?: minecraft_version
 
 apply plugin: "fabric-loom"
 apply plugin: "maven-publish"
-apply plugin: "dev.lukebemish.opensesame.loom"
 
 group = property("maven_group")
 version = property("mod_version")
@@ -50,7 +47,6 @@ loom {
     }
 }
 
-opensesame.apply(sourceSets.client)
 
 sourceSets {
     main {
@@ -85,8 +81,6 @@ dependencies {
 
     // MixinSquared for cancelling other mods' mixins (Meteor Client fix)
     include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.2-beta.4")))
-
-    include(implementation("dev.lukebemish.opensesame:opensesame-fabric:0.8.1"))
 }
 
 tasks.processResources {
