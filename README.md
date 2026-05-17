@@ -30,8 +30,8 @@
 
 ## Requirements
 
-- **Minecraft** 1.21.1 – 26.1.2
-- **Fabric Loader** 0.16.0+ (0.18.5+ for MC 26.1.x)
+- **Minecraft** 1.21.1 – 1.21.11
+- **Fabric Loader** 0.16.0+
 - **Fabric API** (matching your Minecraft version)
 
 ### Installation
