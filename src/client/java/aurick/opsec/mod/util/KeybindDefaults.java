@@ -110,5 +110,10 @@ public final class KeybindDefaults {
         initialized = false;
         Opsec.LOGGER.debug("[OpSec] KeybindDefaults cache reset");
     }
-
+	
+	
+    public static int size() {
+        if (!initialized) initialize();
+        return defaultKeys.size();
+    }
 }
